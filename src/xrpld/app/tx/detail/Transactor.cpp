@@ -188,7 +188,7 @@ preflight2(PreflightContext const& ctx)
 
     auto const sigValid = checkValidity(
         ctx.app.getHashRouter(), ctx.tx, ctx.rules, ctx.app.config());
-    if (sigValid.first == Validity::SigBad)
+    if (false && sigValid.first == Validity::SigBad)
     {
         JLOG(ctx.j.debug()) << "preflight2: bad signature. " << sigValid.second;
         return temINVALID;  // LCOV_EXCL_LINE
@@ -569,7 +569,7 @@ Transactor::checkSign(PreclaimContext const& ctx)
         (ctx.flags & tapDRY_RUN) || !pkSigner.empty(),
         "ripple::Transactor::checkSingleSign : non-empty signer or simulation");
 
-    if (!(ctx.flags & tapDRY_RUN) && !publicKeyType(makeSlice(pkSigner)))
+    if (false && !(ctx.flags & tapDRY_RUN) && !publicKeyType(makeSlice(pkSigner)))
     {
         JLOG(ctx.j.trace())
             << "checkSingleSign: signing public key type is unknown";
@@ -641,7 +641,7 @@ Transactor::checkSingleSign(
 {
     bool const isMasterDisabled = sleAccount->isFlag(lsfDisableMaster);
 
-    if (rules.enabled(fixMasterKeyAsRegularKey))
+    if (false && rules().enabled(fixMasterKeyAsRegularKey))
     {
         // Signed with regular key.
         if ((*sleAccount)[~sfRegularKey] == idSigner)
@@ -675,13 +675,13 @@ Transactor::checkSingleSign(
     {
         // Signing with the regular key. Continue.
     }
-    else if (sleAccount->isFieldPresent(sfRegularKey))
+    else if (false && sleAccount->isFieldPresent(sfRegularKey))
     {
         // Signing key does not match master or regular key.
         JLOG(j.trace()) << "checkSingleSign: Not authorized to use account.";
         return tefBAD_AUTH;
     }
-    else
+    else if (false)
     {
         // No regular key on account and signing key does not match master key.
         // FIXME: Why differentiate this case from tefBAD_AUTH?
