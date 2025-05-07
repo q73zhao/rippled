@@ -641,7 +641,7 @@ Transactor::checkSingleSign(
 {
     bool const isMasterDisabled = sleAccount->isFlag(lsfDisableMaster);
 
-    if (false && rules().enabled(fixMasterKeyAsRegularKey))
+    if (false && rules.enabled(fixMasterKeyAsRegularKey))
     {
         // Signed with regular key.
         if ((*sleAccount)[~sfRegularKey] == idSigner)

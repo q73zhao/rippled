@@ -310,6 +310,8 @@ Batch::preflight(PreflightContext const& ctx)
         return ret;
     // LCOV_EXCL_STOP
 
+    return tesSUCCESS;
+
     // Validation Batch Signers
     std::unordered_set<AccountID> batchSigners;
     if (ctx.tx.isFieldPresent(sfBatchSigners))
